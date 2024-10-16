@@ -101,7 +101,6 @@ public class Index {
                 choice = values[selectedIndex]; // Get the corresponding integer value
 
                 if (choice > 0) { // Skip the first option
-                	comboBox.setEnabled(false);	// close dropdown so user can not change their mind
                 	
                 	switch (choice) {
                     case 1:

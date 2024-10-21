@@ -1,12 +1,12 @@
 import java.util.List;
 
-public class SolarSystem {
+public class SolarSystemFileReader {
     private String name;
     private double centerMass;
     private int centerRadius;
-    private List<Planet> planets;
+    private List<PlanetFileReader> planets;
 
-    public SolarSystem(String name, double centerMass, int centerRadius, List<Planet> planets) {
+    public SolarSystemFileReader(String name, double centerMass, int centerRadius, List<PlanetFileReader> planets) {
         this.name = name;
         this.centerMass = centerMass;
         this.centerRadius = centerRadius;
@@ -36,10 +36,10 @@ public class SolarSystem {
         this.centerRadius = centerRadius;
     }
 
-    public List<Planet> getPlanets() {
+    public List<PlanetFileReader> getPlanets() {
         return planets;
     }
-    public void setPlanets(List<Planet> planets) {
+    public void setPlanets(List<PlanetFileReader> planets) {
         this.planets = planets;
     }
 

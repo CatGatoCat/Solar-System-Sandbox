@@ -1,8 +1,8 @@
-public class Planet {
+public class PlanetFileReader {
     private double mass;
     private String radius;
 
-    public Planet(double mass, String radius) {
+    public PlanetFileReader(double mass, String radius) {
         this.mass = mass;
         this.radius = radius;
     }

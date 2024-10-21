@@ -4,17 +4,17 @@ import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
 
-public class CSVReader {
+public class CSVReaderFileReader {
     
-    public List<SolarSystem> readCSV(String filePath) {
-        List<SolarSystem> solarSystems = new ArrayList<>();
+    public List<SolarSystemFileReader> readCSV(String filePath) {
+        List<SolarSystemFileReader> solarSystems = new ArrayList<>();
         
         try (BufferedReader br = new BufferedReader(new FileReader(filePath))) {
             String line;
             String name = "";
             double centerMass = 0;
             int centerRadius = 0;
-            List<Planet> planets = new ArrayList<>();
+            List<PlanetFileReader> planets = new ArrayList<>();
             
             while ((line = br.readLine()) != null) {
                 String[] data = line.split(",");
@@ -23,7 +23,7 @@ public class CSVReader {
                 if (data[0].contains("Solar System Name")) {
                     if (!name.isEmpty()) {
                         // Add the previous solar system to the list before starting the new one
-                        solarSystems.add(new SolarSystem(name, centerMass, centerRadius, planets));
+                        solarSystems.add(new SolarSystemFileReader(name, centerMass, centerRadius, planets));
                         planets = new ArrayList<>();
                     }
                     name = data[1];
@@ -36,13 +36,13 @@ public class CSVReader {
                     line = br.readLine();  // Read the next line for radius
                     String[] radiusData = line.split(",");
                     String planetRadius = radiusData[1];
-                    planets.add(new Planet(planetMass, planetRadius));
+                    planets.add(new PlanetFileReader(planetMass, planetRadius));
                 }
             }
             
             // Add the last solar system after the loop ends
             if (!name.isEmpty()) {
-                solarSystems.add(new SolarSystem(name, centerMass, centerRadius, planets));
+                solarSystems.add(new SolarSystemFileReader(name, centerMass, centerRadius, planets));
             }
         } catch (IOException e) {
             //e.printStackTrace();

@@ -62,6 +62,8 @@ public class MainInput {
             
             // Req 4.5: Save input data to a file and store in array
             saveSolarSystemInputToFile(solarSystem);
+
+
         }
     }
 
@@ -76,19 +78,19 @@ public class MainInput {
             List<Double> centralMasses = solarSystem.getCentralMasses();
             List<Double> centralRadii = solarSystem.getCentralRadii();
             for (int i = 0; i < centralMasses.size(); i++) {
-                writer.write(" - Central Object " + (i + 1) + ": \n");
-                writer.write("   Mass: " + centralMasses.get(i) + "\n");
-                writer.write("   Radius: " + centralRadii.get(i) + "\n");
+                writer.write("Central Object " + (i + 1) + ": \n");
+                writer.write("Mass: " + centralMasses.get(i) + "\n");
+                writer.write("Radius: " + centralRadii.get(i) + "\n");
             }
            
            
             writer.write("Planets:\n");
 
             for (PlanetInput planet : solarSystem.getPlanets()) {
-                writer.write(" - Planet Name: " + planet.getName() + "\n");
-                writer.write("   Mass: " + planet.getMass() + "\n");
-                writer.write("   Radius: " + planet.getRadius() + "\n");
-                writer.write("   Distance from central object: " + planet.getDistance() + "\n");
+                writer.write("Planet Name: " + planet.getName() + "\n");
+                writer.write("Mass: " + planet.getMass() + "\n");
+                writer.write("Radius: " + planet.getRadius() + "\n");
+                writer.write("Distance from central object: " + planet.getDistance() + "\n");
             }
             System.out.println("Data saved to " + fileName);
         } catch (IOException e) {

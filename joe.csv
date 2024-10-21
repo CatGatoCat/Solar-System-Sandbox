@@ -1,0 +1,30 @@
+Solar System: joe
+Central Objects:
+ - Central Object 1: 
+   Mass: 2000000.0
+   Radius: 14.0
+Planets:
+ - Planet Name: Centrus4
+   Mass: 40.0
+   Radius: 16
+   Distance from central object: 34.0
+ - Planet Name: gf
+   Mass: 23.0
+   Radius: 23
+   Distance from central object: 24.0
+ - Planet Name: fdgfdg
+   Mass: 13.0
+   Radius: 24
+   Distance from central object: 25.0
+ - Planet Name: dsf
+   Mass: 123.0
+   Radius: 15
+   Distance from central object: 154.0
+ - Planet Name: sdf
+   Mass: 156.0
+   Radius: 145
+   Distance from central object: 156.0
+ - Planet Name: fdgf
+   Mass: 17878.0
+   Radius: 145
+   Distance from central object: 345.0

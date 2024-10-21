@@ -1,4 +1,3 @@
-public class SimInfo {
     /***********************************
  * Filename: Sim_Info_Motta
  * Author: Nicole Motta
@@ -37,9 +36,9 @@ public class SimInfo {
  * +addInfo(Simulation_Motta): void
  ***********************************/
 
+public class SimInfo {
 
-
-	private ArrayList<Simulation_Motta> SimInfo = new ArrayList<>();
+	private ArrayList<Simulation> SimInfo = new ArrayList<>();
 
 	private String SystemName;
 	private int CenterObjectNum;
@@ -56,12 +55,12 @@ public class SimInfo {
 		CenterObjectMass = 0;
 		CenterObjectRadius = 0;
 		PlanetsNumber = 0;
-		PlanetMass = 0;
+		PlanetMass = 0.0;
 		PlanetRadius = 0;
 	}
 
-	public String getSystemName() {return SystemName;}
-	public void setSystemName(String SysName) {
+	public String getName() {return SystemName;}
+	public void setName(String SysName) {
 			SystemName = SysName;	
 	}
 
@@ -106,33 +105,33 @@ public class SimInfo {
 		}
 	}
 
-	for(int i=0; i<PlanetsNumber; i++){
+	/*for(int i=0; i<PlanetsNumber; i++){
 		System.out.println(i);
+	}*/
 
-	}
-
-	public double getMass() {return mass;}
-	public void setMass(double Mass) {
+	public double getPlanetMass() {return PlanetMass;}
+	public void setPlanetMass(double Mass) {
 		if(Mass<0)
 		{
 			Mass = 0;
 		}else {
-			mass = Mass;
+			PlanetMass = Mass;
 		}
 	}
 
 
-	public double getTimeOfBurn() {return timeOfBurn;}
-	public void setTimeOfBurn(double BurnTime) {
-		if(BurnTime<0) {
-			timeOfBurn = 0;
+
+	public double getTimeOfBurn() {return PlanetRadius;}
+	public void setTimeOfBurn(double Radius) {
+		if(Radius<0) {
+			PlanetRadius = 0;
 		}else {
-			timeOfBurn = BurnTime;
+			PlanetRadius = Radius;
 		}
 	}
 
 
-	public void addInfo(Simulation_Motta sim)
+	public void addInfo(Simulation sim)
 	{
 		if (sim != null) {
 			SimInfo.add(sim);

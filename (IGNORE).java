@@ -87,22 +87,22 @@ public class FileInput {
 			SimData.add(value);
 
 			if(label.equalsIgnoreCase("Solar System Name")) {
-				simInfo.setName(value);
+				SimInfo.setName(value);
 			}
 			if(label.equalsIgnoreCase("Number of center object")) {
-				simInfo.setCenterObject(value);
+				SimInfo.setNumCenterObject(value);
 			}
 			if(label.equalsIgnoreCase("Mass of center object")) {
-				simInfo.setMassCO(value);
+				SimInfo.setCenterObjectMass(value);
 			}
 			if(label.equalsIgnoreCase("Radius of center object")) {
-				simInfo.setRadiusCO(value);
+				SimInfo.setCenterObjectRadius(value);
 			}
 			if(label.equalsIgnoreCase("Number of planets")) {
 				simInfo.setPlanetsNum(value);
-				 	
+
 			}
-			for(i=)
+
 
 			if(label.equalsIgnoreCase("length") || label.equalsIgnoreCase("diameter")) {
 				simInfo.setLengDia(value);
@@ -110,7 +110,7 @@ public class FileInput {
 			if(label.equalsIgnoreCase("width") || label.equalsIgnoreCase("Astronauts") || label.equalsIgnoreCase("Battery capacity")) {
 				simInfo.setWidtAstBat(value);
 			} 
-
+		
 
 
 		}

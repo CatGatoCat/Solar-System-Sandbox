@@ -1,0 +1,14 @@
+Solar System: jk
+Central Objects:
+ - Central Object 1: 
+   Mass: 23.0
+   Radius: 456.0
+Planets:
+ - Planet Name: ha
+   Mass: 12.0
+   Radius: 13
+   Distance from central object: 14.0
+ - Planet Name: ho
+   Mass: 14.0
+   Radius: 25
+   Distance from central object: 676.0

@@ -67,7 +67,7 @@ public class MainInput {
 
     // Save data to file
     public static void saveSolarSystemInputToFile(SolarSystemInput solarSystem) {
-        String fileName = solarSystem.getName() + ".txt"; // Save data to a .txt file
+        String fileName = solarSystem.getName() + ".csv"; // Save data to a .txt file
 
         try (BufferedWriter writer = new BufferedWriter(new FileWriter(fileName))) {
             writer.write("Solar System: " + solarSystem.getName() + "\n");

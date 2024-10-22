@@ -4,7 +4,7 @@ public class PlanetInput {
     private String radius;
     private double distance;
 
-    public PlanetInput(String name, double mass, String radius, double distance) {
+    public PlanetInput(String name, double mass, double distance, double planetDistance) {
         this.name = name;
         this.mass = mass;
         this.radius = radius;

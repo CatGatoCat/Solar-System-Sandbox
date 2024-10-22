@@ -1,17 +1,17 @@
-Solar System: try #1
+Solar System: Try #1
 Central Objects:
- - Central Object 1: 
-   Mass: 13.0
-   Radius: 12.0
- - Central Object 2: 
-   Mass: 13.0
-   Radius: 12.0
+Central Object 1: 
+Mass: 12.0
+Radius: 13.0
+Central Object 2: 
+Mass: 12.0
+Radius: 13.0
 Planets:
- - Planet Name: Planet1
-   Mass: 23.0
-   Radius: 14
-   Distance from central object: 52.0
- - Planet Name: Planet2
-   Mass: 13.0
-   Radius: 24
-   Distance from central object: 53.0
+Planet Name: Planet1
+Mass: 14.0
+Radius: null
+Distance from central object: 13.0
+Planet Name: Planet2
+Mass: 13.0
+Radius: null
+Distance from central object: 14.0

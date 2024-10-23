@@ -1,3 +1,4 @@
+
 /*
 	Filename: Index
 	Authors: Laurel Grein, Rylee Grover, Nicole Motta, Kyrylo Holovenko
@@ -81,8 +82,8 @@ public class Index {
         choices.setLayout(new FlowLayout(FlowLayout.LEFT));
         choices.setBackground(Color.red);
 
-        String[] items = {"Select an option", "Upload from file", "Type in all data", "Create a new file"};
-        int[] values = {0, 1, 2, 3}; // Corresponding integer values
+        String[] items = {"Select an option", "Upload from file", "Type in all data"};
+        int[] values = {0, 1, 2}; // Corresponding integer values
 
         JComboBox<String> comboBox = new JComboBox<>(items);
         comboBox.setFont(new Font("MV Boli", Font.PLAIN, 20));
@@ -104,13 +105,10 @@ public class Index {
                 	
                 	switch (choice) {
                     case 1:
-                        System.out.print("User chooses to upload a file");
+                        System.out.print("User chooses to upload a file\n");
                         break;
                     case 2:
-                        System.out.print("User chooses to type in all data");
-                        break;
-                    case 3:
-                        System.out.print("User chooses to create a new file");
+                        System.out.print("User chooses to type in all data\n");
                         break;
                     default:
                         // Optional: handle invalid choice (0)

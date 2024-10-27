@@ -8,9 +8,8 @@ import java.util.Scanner;
 
 public class MainInput {
     public static void main(String[] args) {
-        // Req 4.1: Ask for Solar System model name
         try (Scanner scanner = new Scanner(System.in)) {
-            // Req 4.1: Ask for Solar System model name
+            // Ask for Solar System model name
             System.out.print("Enter the Solar System model name: ");
             String solarSystemName = scanner.nextLine();
             
@@ -24,7 +23,7 @@ public class MainInput {
 
           //  } while (centralObjects != 1 && centralObjects != 2);
 
-            // Req 4.2.1: Input mass and radius for the central object(s)
+            //Input mass and radius for the central object(s)
             List<Double> centralMasses = new ArrayList<>();
             List<Double> centralRadii = new ArrayList<>();
 
@@ -40,14 +39,14 @@ public class MainInput {
                 centralRadii.add(radius);
             }
             
-            // Req 4.3: Ask for the number of planets
+            //Ask for the number of planets
            // System.out.print("Enter the number of planets: ");
             int numberOfPlanets = getValidIntegerInput(scanner, "Enter the number of planets: ", 0, Integer.MAX_VALUE);
 
            // int numberOfPlanets = scanner.nextInt();
             scanner.nextLine();  // Consume newline
             
-            // Req 4.4: Input details for each planet
+            //Input details for each planet
             List<PlanetInput> planets = new ArrayList<>();
             for (int i = 0; i < numberOfPlanets; i++) {
                 System.out.print("Enter name of planet " + (i + 1) + ": ");
@@ -76,7 +75,7 @@ public class MainInput {
             // Create SolarSystem object
             SolarSystemInput solarSystem = new SolarSystemInput(solarSystemName, centralMasses, centralRadii, planets);
             
-            // Req 4.5: Save input data to a file and store in array
+            //Save input data to a file and store in array
             saveSolarSystemInputToFile(solarSystem);
 
 

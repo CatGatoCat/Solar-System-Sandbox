@@ -108,10 +108,10 @@ public class GUI_revamped {
         confirmButton.addActionListener(new ActionListener() {
             public void actionPerformed(ActionEvent e) {
                 // Action to perform on confirmation
-                JOptionPane.showMessageDialog(frame, "Great! Let's get started." + dropdown.getSelectedItem());
+                JOptionPane.showMessageDialog(frame, "Great! Let's get started.\n" + dropdown.getSelectedItem());
             }
         });
-
+       
         // Add components to panel
         JPanel dropdownPanel = new JPanel();
         dropdownPanel.add(promptLabel);
@@ -123,5 +123,20 @@ public class GUI_revamped {
         frame.add(panel);
         frame.revalidate();
         frame.repaint();
+    }
+    private void insertManualData()
+    {
+        //find a way to get nicoles code to be put in here because she already has data inputs!
+        frame.remove(panel);
+        //a new panel
+        panel= new JPanel();
+        panel.setLayout(new BorderLayout());
+        //make some questions, make some text box answers!
+        
+
+    } 
+    private void insertDatabaseFile()
+    {
+        //create a place where the user can insert a file of their choosing
     }
 }

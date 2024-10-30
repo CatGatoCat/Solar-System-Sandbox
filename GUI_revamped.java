@@ -124,6 +124,7 @@ public class GUI_revamped {
         frame.revalidate();
         frame.repaint();
     }
+    /*
     private void insertManualData()
     {
         //find a way to get nicoles code to be put in here because she already has data inputs!
@@ -139,4 +140,5 @@ public class GUI_revamped {
     {
         //create a place where the user can insert a file of their choosing
     }
+     */
 }

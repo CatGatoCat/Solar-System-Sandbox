@@ -133,7 +133,27 @@ public class GUI_revamped {
         panel= new JPanel();
         panel.setLayout(new BorderLayout());
         //make some questions, make some text box answers!
-        
+        userAnswerField= new JTextField();
+        JButton button= new JButton("I want to see what this looks like!");
+        button.setBackground(Color.BLUE);
+        button.setForeground(Color.WHITE);
+        button.setFont(new Font("Arial"), Font.BOLD,14));
+        JLabel questions = new JLabel("System model name: \n
+        How many central objects do you want? \n
+        Mass of central object: \n
+        Radius of central object: \n
+        Number of planets: \n
+        Name of Planet X: \n
+        Mass of Planet X: \n
+        Radius of Planet X: \n
+        Distance from Planet X to central object: ")
+        //How many central objects do you want (button select 1 or 2)
+        //Mass of central object 2
+        // radius of central object 2s
+        //enter name of planet (for every planet)
+        //mass (for every planet)
+        //radius (for every planet)
+        //distance from the planet to central object (for every planet)
 
     } 
     private void insertDatabaseFile()

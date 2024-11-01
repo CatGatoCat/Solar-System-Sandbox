@@ -8,6 +8,16 @@ import java.util.Scanner;
 
 public class MainInput {
     public static void main(String[] args) {
+        
+        /*String filePath = "C:/Users/nicol/VSCode/SE300/trial_system.csv"; // Set your CSV file path here
+        CSVReaderFileReader reader = new CSVReaderFileReader();
+        List<SolarSystemFileReader> solarSystems = reader.readCSV(filePath);
+
+        // Output all solar systems
+        for (SolarSystemFileReader solarSystem : solarSystems) {
+            System.out.println(solarSystem);
+        }*/
+
         try (Scanner scanner = new Scanner(System.in)) {
             // Ask for Solar System model name
             System.out.print("Enter the Solar System model name: ");
@@ -16,12 +26,7 @@ public class MainInput {
            // System.out.println("How many central objects (stars) do you want? (1 or 2): ");
            int centralObjects = getValidIntegerInput(scanner, "How many central objects (stars) do you want? (1 or 2): ", 1, 2);
 
-            //int centralObjects;
-           // do {
-                //centralObjects = scanner.nextInt();
-               // centralObjects = getValidIntegerInput(scanner, "How many central objects (stars) do you want? (1 or 2): ", 1, 2);
-
-          //  } while (centralObjects != 1 && centralObjects != 2);
+            
 
             //Input mass and radius for the central object(s)
             List<Double> centralMasses = new ArrayList<>();
@@ -62,6 +67,7 @@ public class MainInput {
                 
                 System.out.print("Enter distance of " + planetName + " from central object: ");
                 double planetDistance = scanner.nextDouble();*/
+                
                 double planetMass = getValidDoubleInput(scanner, "Enter mass of " + planetName + ": ");
                 double planetRadius = getValidDoubleInput(scanner, "Enter radius of " + planetName + ": ");
                 double planetDistance = getValidDoubleInput(scanner, "Enter distance of " + planetName + " from central object: ");

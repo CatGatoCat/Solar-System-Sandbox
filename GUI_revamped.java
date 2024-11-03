@@ -1,27 +1,28 @@
 /*
-	Filename: GUI_revamped
-	Authors: Laurel Grein
-	Date created: 10/27/2024
-	Date modified: 10/27/2024
-	Purpose: This file serve as the visual aspect of our code! :D
-	
-	Attributes:
-	-frame: JFrame
-	-label: JLabel
-	-date_update: String
-	-names: String
-	-choice: int
-	
-	Methods:
-	+main(String[]): void
-	-createFrame(): void
-	-welcomeScreen(): void
-	-choices(): void
-	
+    Filename: GUI_revamped
+    Authors: Laurel Grein
+    Date created: 10/27/2024
+    Date modified: 10/27/2024
+    Purpose: This file serve as the visual aspect of our code! :D
+    
+    Attributes:
+    -frame: JFrame
+    -label: JLabel
+    -date_update: String
+    -names: String
+    -choice: int
+    
+    Methods:
+    +main(String[]): void
+    -createFrame(): void
+    -welcomeScreen(): void
+    -choices(): void
+    
 */
 import java.awt.*;
 import java.awt.event.*;
 import javax.swing.*;
+import java.io.File;
 
 public class GUI_revamped {
     private JFrame frame;
@@ -207,6 +208,27 @@ public class GUI_revamped {
     }
 
     private void insertDatabaseFile() {
-        JOptionPane.showMessageDialog(frame, "Database file input is not yet implemented.");
+        frame.remove(panel);
+        panel = new JPanel();
+        panel.setLayout(new BorderLayout());
+
+        JLabel instructionLabel = new JLabel("Select a file from your directory:");
+        panel.add(instructionLabel, BorderLayout.NORTH);
+
+        JButton openFileButton = new JButton("Open File");
+        openFileButton.addActionListener(e -> {
+            JFileChooser fileChooser = new JFileChooser();
+            int returnValue = fileChooser.showOpenDialog(null);
+            if (returnValue == JFileChooser.APPROVE_OPTION) {
+                File selectedFile = fileChooser.getSelectedFile();
+                JOptionPane.showMessageDialog(frame, "Selected file: " + selectedFile.getAbsolutePath());
+            }
+        });
+
+        panel.add(openFileButton, BorderLayout.CENTER);
+
+        frame.add(panel);
+        frame.revalidate();
+        frame.repaint();
     }
 }

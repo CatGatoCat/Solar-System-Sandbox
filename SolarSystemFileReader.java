@@ -1,4 +1,4 @@
-import java.util.List;
+/*import java.util.List;
 
 public class SolarSystemFileReader {
     private String name;
@@ -11,6 +11,11 @@ public class SolarSystemFileReader {
         this.centerMass = centerMass;
         this.centerRadius = centerRadius;
         this.planets = planets;
+    }
+
+    public SolarSystemFileReader(String name2, List<Double> centralMasses, List<Double> centralRadii,
+            List<Planet> planets2) {
+        //TODO Auto-generated constructor stub
     }
 
     public String getName() {
@@ -59,3 +64,4 @@ public class SolarSystemFileReader {
    
 
 }
+*/

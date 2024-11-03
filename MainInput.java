@@ -52,7 +52,7 @@ public class MainInput {
             scanner.nextLine();  // Consume newline
             
             //Input details for each planet
-            List<PlanetInput> planets = new ArrayList<>();
+            List<Planet> planets = new ArrayList<>();
             for (int i = 0; i < numberOfPlanets; i++) {
                 System.out.print("Enter name of planet " + (i + 1) + ": ");
                 String planetName = scanner.nextLine();
@@ -75,11 +75,11 @@ public class MainInput {
 
                 scanner.nextLine();  // Consume newline
                 
-                planets.add(new PlanetInput(planetName, planetMass, planetRadius, planetDistance));
+                planets.add(new Planet(planetName, planetMass, planetRadius, planetDistance));
             }
             
             // Create SolarSystem object
-            SolarSystemInput solarSystem = new SolarSystemInput(solarSystemName, centralMasses, centralRadii, planets);
+            SolarSystem solarSystem = new SolarSystem(solarSystemName, centralMasses, centralRadii, planets);
             
             //Save input data to a file and store in array
             saveSolarSystemInputToFile(solarSystem);
@@ -89,7 +89,7 @@ public class MainInput {
     }
 
     // Save data to file
-    public static void saveSolarSystemInputToFile(SolarSystemInput solarSystem) {
+    public static void saveSolarSystemInputToFile(SolarSystem solarSystem) {
         String fileName = solarSystem.getName() + ".csv"; // Save data to a .txt file
 
         try (BufferedWriter writer = new BufferedWriter(new FileWriter(fileName))) {
@@ -107,7 +107,7 @@ public class MainInput {
            
             writer.write("Planets:\n");
 
-            for (PlanetInput planet : solarSystem.getPlanets()) {
+            for (Planet planet : solarSystem.getPlanets()) {
                 writer.write("Planet Name: " + planet.getName() + "\n");
                 writer.write("Mass: " + planet.getMass() + "\n");
                 writer.write("Radius: " + planet.getRadius() + "\n");

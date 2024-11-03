@@ -1,3 +1,21 @@
+/*
+	Filename: MainInput
+	Author: Nicole Motta
+    Collaborators: Laurel Grein, Rylee Grover, Kyrylo Holovenko
+	Date created: 10/04/2024
+	Date modified: 10/28/2024
+	Purpose: Allows the user to input the values for their solar system simulation.
+	
+	Attributes:
+	
+	Methods:
+	+main(String[]): void
+    -saveSolarSystemInputToFile(SolarSystem): void
+	-getValidIntegerInput(Scanner, String, int, int): int
+    -getValidDoubleInput(Scanner, String): double
+	
+*/
+
 import java.io.BufferedWriter;
 import java.io.FileWriter;
 import java.io.IOException;
@@ -89,7 +107,7 @@ public class MainInput {
     }
 
     // Save data to file
-    public static void saveSolarSystemInputToFile(SolarSystem solarSystem) {
+    private static void saveSolarSystemInputToFile(SolarSystem solarSystem) {
         String fileName = solarSystem.getName() + ".csv"; // Save data to a .txt file
 
         try (BufferedWriter writer = new BufferedWriter(new FileWriter(fileName))) {
@@ -120,7 +138,7 @@ public class MainInput {
     }
 
     // Method to get a valid integer input from the user
-    public static int getValidIntegerInput(Scanner scanner, String prompt, int min, int max) {
+    private static int getValidIntegerInput(Scanner scanner, String prompt, int min, int max) {
         int input = -1;
         boolean isValid = false;
 
@@ -144,7 +162,7 @@ public class MainInput {
     }
 
     // Method to get a valid double input from the user
-    public static double getValidDoubleInput(Scanner scanner, String prompt) {
+    private static double getValidDoubleInput(Scanner scanner, String prompt) {
         double input = -1;
         boolean isValid = false;
 

@@ -1,3 +1,18 @@
+/*
+	Filename: CSVFileReader
+	Author: Nicole Motta
+    Collaborators: Laurel Grein, Rylee Grover, Kyrylo Holovenko
+	Date created: 10/24/2024
+	Date modified: 11/2/2024
+	Purpose: Reads the csv file chosen by the user.
+	
+	Attributes:
+	
+	Methods:
+	+readCSV(String): List<SolarSystem>
+	
+*/
+
 import java.io.BufferedReader;
 import java.io.FileReader;
 import java.io.IOException;
@@ -5,7 +20,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 
-public class CSVReaderFileReader {
+public class CSVFileReader {
     
     public List<SolarSystem> readCSV(String filePath) {
         List<SolarSystem> solarSystems = new ArrayList<>();

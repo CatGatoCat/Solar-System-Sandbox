@@ -1,3 +1,36 @@
+/*
+	Filename: SolarSystem
+	Author: Nicole Motta
+    Collaborators: Laurel Grein, Rylee Grover, Kyrylo Holovenko
+	Date created: 10/04/2024
+	Date modified: 10/30/2024
+	Purpose: Parent Class of the system.
+	
+	Attributes:
+    -name: String
+    -centralMasses: List <Double>
+    -centralRadii: List<Double>
+    -planets: List<Planet>
+	
+	Methods:
+	+<<constructor>> SolarSystem(String, List<Double>, List<Double>, List<Planet>)
+    
+    +getName(): String
+    +setName(String): void
+
+    +getCentralMasses(): List<Double>
+    +setCentralMasses(List<Double>): void
+
+    +getCentralRadii(): List<Double>
+    +setCentralRadii(List<Double>): void
+
+    +getPlanets(): List<Planet>
+    +setPlanets(List<Planet>): void
+
+    +toString(): String
+    
+*/
+
 import java.util.List;
 
 public class SolarSystem {

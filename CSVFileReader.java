@@ -32,6 +32,13 @@ public class CSVFileReader {
             List<Double> centralMasses = new ArrayList<>();
             List<Double> centralRadii = new ArrayList<>();
             List<Planet> planets = new ArrayList<>();
+
+            String planetName = null;
+            double planetMass = 0;
+            double planetRadius = 0;
+            double planetDistance = 0;
+            boolean readingPlanet = false;
+
             
             while ((line = br.readLine()) != null) {
                 String[] data = line.split(",");
@@ -45,32 +52,62 @@ public class CSVFileReader {
                     }
                     name = data[1];
                 } else if (data[0].contains("Mass of center object")) {
-                    centralMasses.add(Double.parseDouble(data[1]));
+                    centralMasses.add(parseDoubleClean(data[1]));
                 } else if (data[0].contains("Radius of center object")) {
-                    centralRadii.add(Double.parseDouble(data[1]));
+                    centralRadii.add(parseDoubleClean(data[1]));
+                } else if (data[0].contains("Name of planet")) {
+                    if (readingPlanet && planetName != null) {
+                        planets.add(new Planet(planetName, planetMass, planetRadius, planetDistance));
+                    }
+                    planetName = data[1].trim();
+                    readingPlanet = true;
+
+                    //planetName = data[1].trim();
                 } else if (data[0].contains("Mass of planet")) {
-                    double planetMass = Double.parseDouble(data[1]);
+                    planetMass = parseDoubleClean(data[1]);
+                } else if (data[0].contains("Radius of planet")) {
+                    planetRadius = parseDoubleClean(data[1]);
+                }else if (data[0].contains("Distance from central object")) {
+                    planetDistance = parseDoubleClean(data[1]);
+                    
+                
+
+                    /* 
                     line = br.readLine();  // Read the next line for radius
                     String[] radiusData = line.split(",");
                     double planetRadius = Double.parseDouble(radiusData[1]);
 
                     line = br.readLine();
                     String[] distanceData = line.split(",");
-                    double planetDistance = Double.parseDouble(distanceData[1]);
+                    double planetDistance = Double.parseDouble(distanceData[1]);*/
+                    if (planetName != null) {
+                        planets.add(new Planet(planetName, planetMass, planetRadius, planetDistance));
+                        // Reset planet attributes for the next planet
+                        planetName = null;
+                    }
 
-                    planets.add(new Planet(data[1], planetMass, planetRadius, planetDistance));
                 }
             }
 
             
             // Add the last solar system after the loop ends
             if (!name.isEmpty()) {
+                if (planetName != null) {  // Final check for any last unadded planet
+                    planets.add(new Planet(planetName, planetMass, planetRadius, planetDistance));
+                }
                 solarSystems.add(new SolarSystem(name, centralMasses, centralRadii, planets));
             }
         } catch (IOException e) {
-            //e.printStackTrace();
+            e.printStackTrace();
         }
         
         return solarSystems;
+        
     }
+
+    private double parseDoubleClean(String input) {
+        input = input.replaceAll("[^0-9.]", ""); // Remove all non-numeric except '.'
+        return input.isEmpty() ? 0.0 : Double.parseDouble(input);
+    }
+
 }

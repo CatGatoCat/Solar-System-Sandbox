@@ -18,7 +18,7 @@ import java.util.List;
 
 public class MainFileReader {
     public static void main(String[] args) {
-        String filePath = "C:/Users/nicol/Documents/GitHub/Solar-System-Sandbox/trial_system_copy.csv"; // Set your CSV file path here
+        String filePath = "C:/Users/nicol/Documents/GitHub/Solar-System-Sandbox/trial_system.csv"; // Set your CSV file path here
         CSVFileReader reader = new CSVFileReader();
         List<SolarSystem> solarSystems = reader.readCSV(filePath);
 

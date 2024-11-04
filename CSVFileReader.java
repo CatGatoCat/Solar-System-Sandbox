@@ -37,7 +37,6 @@ public class CSVFileReader {
             double planetMass = 0;
             double planetRadius = 0;
             double planetDistance = 0;
-            boolean readingPlanet = false;
 
             
             while ((line = br.readLine()) != null) {
@@ -56,20 +55,18 @@ public class CSVFileReader {
                 } else if (data[0].contains("Radius of center object")) {
                     centralRadii.add(parseDoubleClean(data[1]));
                 } else if (data[0].contains("Name of planet")) {
-                    if (readingPlanet && planetName != null) {
+                    if (planetName != null) {
                         planets.add(new Planet(planetName, planetMass, planetRadius, planetDistance));
                     }
                     planetName = data[1].trim();
-                    readingPlanet = true;
 
-                    //planetName = data[1].trim();
                 } else if (data[0].contains("Mass of planet")) {
                     planetMass = parseDoubleClean(data[1]);
                 } else if (data[0].contains("Radius of planet")) {
                     planetRadius = parseDoubleClean(data[1]);
                 }else if (data[0].contains("Distance from central object")) {
                     planetDistance = parseDoubleClean(data[1]);
-                    
+
                 
 
                     /* 

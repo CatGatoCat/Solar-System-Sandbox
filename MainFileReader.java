@@ -21,11 +21,17 @@ public class MainFileReader {
         String filePath = "C:/Users/nicol/Documents/GitHub/Solar-System-Sandbox/trial_system.csv"; // Set your CSV file path here
         CSVFileReader reader = new CSVFileReader();
         List<SolarSystem> solarSystems = reader.readCSV(filePath);
+        //List<SolarSystem> Planets = reader.readCSV(filePath);
 
         // Output all solar systems
         for (SolarSystem solarSystem : solarSystems) {
+            
             System.out.println(solarSystem);
+           //f System.out.println(Planets);
+           
+
         }
+
     }
 }
 

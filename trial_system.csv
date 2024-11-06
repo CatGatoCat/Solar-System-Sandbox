@@ -1,7 +1,9 @@
 ﻿Solar System Name,Trial #1
-Number of center object,1
-Mass of center object,2134
-Radius of center object,234
+Number of center object,2
+Mass of center object 1,2134
+Radius of center object 1,234
+Mass of center object 2,345
+Radius of center object 2,7655
 Number of planets,3
 Name of planet 1,John
 Mass of planet 1,5933883

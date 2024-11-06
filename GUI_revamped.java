@@ -42,7 +42,7 @@ public class GUI_revamped {
     public void createFrame() {
         frame = new JFrame("GUI Revamped");
         frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-        frame.setSize(400, 300);
+        frame.setSize(600, 300);
         welcomeScreen();
         frame.setVisible(true);
     }

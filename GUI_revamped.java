@@ -16,11 +16,15 @@
     +main(String[]): void
     -createFrame(): void
     -welcomeScreen(): void
-    -choices(): void
+    -choicesScreen(): void
+    -insertManualData(): void
+    -addCentralObjectFields(numObjects): void
+    -createPlanetFields(): void
+    -insertDatabaseFile(): void
     
 */
 import java.awt.*;
-import java.awt.event.*;
+//import java.awt.event.*;
 import javax.swing.*;
 import java.io.File;
 

@@ -24,7 +24,6 @@
     
 */
 import java.awt.*;
-import java.awt.event.*;
 import javax.swing.*;
 import java.io.File;
 import java.util.HashMap;
@@ -295,7 +294,7 @@ public class GUI_revamped {
 
         speedSlider.addChangeListener(e ->{
             int delay= speedSlider.getValue();
-            timer.setDelay(delay)
+            timer.setDelay(delay);
         });
 
         panel.add(speedSlider, BorderLayout.SOUTH);
@@ -308,8 +307,8 @@ public class GUI_revamped {
             for (int i=0; i<numberOfPlanets; i++)
             {
                 planetAngles[i]+=(2* Math.PI/360);
-                if (planetAngels[i]>=360){
-                    planetAngels[i]=0;
+                if (planetAngles[i]>=360){
+                    planetAngles[i]=0;
                 }
             }
             drawPanel.repaint();

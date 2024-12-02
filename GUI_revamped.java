@@ -24,9 +24,8 @@
     
 */
 import java.awt.*;
-//import java.awt.event.*;
-import javax.swing.*;
 import java.io.File;
+import javax.swing.*;
 
 public class GUI_revamped {
     private JFrame frame;
@@ -37,6 +36,10 @@ public class GUI_revamped {
     private JTextField radiusCentralObjectField1, radiusCentralObjectField2;
     private JTextField numberOfPlanetsField;
     private int numberOfPlanets;
+    private String[] planetNames;
+    private double[] planetMasses;
+    private double[] planetRadii;
+    private double[] planetDistances;
 
     public static void main(String[] args) {
         GUI_revamped gui = new GUI_revamped();
@@ -181,26 +184,35 @@ public class GUI_revamped {
             panel.removeAll();
             panel.setLayout(new GridLayout(0, 2));
 
+            planetNames = new String[numberOfPlanets];
+            planetMasses = new double[numberOfPlanets];
+            planetRadii = new double[numberOfPlanets];
+            planetDistances = new double[numberOfPlanets];
+
             for (int i = 1; i <= numberOfPlanets; i++) {
                 panel.add(new JLabel("Name of Planet " + i + ":"));
                 JTextField planetNameField = new JTextField();
+                planetNames[i - 1] = planetNameField.getText();
                 panel.add(planetNameField);
 
                 panel.add(new JLabel("Mass of Planet " + i + ":"));
                 JTextField planetMassField = new JTextField();
+                planetMasses[i - 1] = Double.parseDouble(planetMassField.getText());
                 panel.add(planetMassField);
 
                 panel.add(new JLabel("Radius of Planet " + i + ":"));
                 JTextField planetRadiusField = new JTextField();
+                planetRadii[i - 1] = Double.parseDouble(planetRadiusField.getText());
                 panel.add(planetRadiusField);
 
                 panel.add(new JLabel("Distance from Planet " + i + " to central object:"));
                 JTextField distanceField = new JTextField();
+                planetDistances[i - 1] = Double.parseDouble(distanceField.getText());
                 panel.add(distanceField);
             }
 
             JButton submitButton = new JButton("Submit");
-            submitButton.addActionListener(e -> JOptionPane.showMessageDialog(frame, "Planet data submitted!"));
+            submitButton.addActionListener(e -> displayPlanets());
 
             panel.add(submitButton);
 
@@ -230,6 +242,32 @@ public class GUI_revamped {
         });
 
         panel.add(openFileButton, BorderLayout.CENTER);
+
+        frame.add(panel);
+        frame.revalidate();
+        frame.repaint();
+    }
+
+    // New method to display planets
+    private void displayPlanets() {
+        frame.remove(panel);
+        panel = new JPanel();
+        panel.setLayout(new BorderLayout());
+
+        JLabel systemModelLabel = new JLabel("System Model: " + systemModelField.getText(), JLabel.CENTER);
+        systemModelLabel.setFont(new Font("Arial", Font.BOLD, 16));
+        panel.add(systemModelLabel, BorderLayout.NORTH);
+
+        JPanel planetsPanel = new JPanel(new GridLayout(0, 1));
+
+        for (int i = 0; i < numberOfPlanets; i++) {
+            String planetInfo = String.format("Planet %d: %s, Mass: %.2f, Radius: %.2f, Distance: %.2f",
+                    i + 1, planetNames[i], planetMasses[i], planetRadii[i], planetDistances[i]);
+            JLabel planetLabel = new JLabel(planetInfo);
+            planetsPanel.add(planetLabel);
+        }
+
+        panel.add(planetsPanel, BorderLayout.CENTER);
 
         frame.add(panel);
         frame.revalidate();

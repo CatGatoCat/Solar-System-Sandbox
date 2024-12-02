@@ -279,40 +279,37 @@ public class GUI_revamped {
         systemModelLabel.setFont(new Font("Arial", Font.BOLD, 16));
         panel.add(systemModelLabel, BorderLayout.NORTH);
     
-        
-        JPanel drawPanel = new DrawPanel();
+        // Create a new JPanel for drawing planets
+        DrawPanel drawPanel = new DrawPanel();
         panel.add(drawPanel, BorderLayout.CENTER);
+    
+        // Create a slider for adjusting the speed of the animation
+        speedSlider = new JSlider(JSlider.HORIZONTAL, 100, 1200, 600); // Range: 10 seconds to 2 minutes
+        speedSlider.setMajorTickSpacing(100);
+        speedSlider.setPaintTicks(true);
+        speedSlider.setPaintLabels(true);
+    
+        speedSlider.addChangeListener(e -> {
+            int delay = speedSlider.getValue();
+            timer.setDelay(delay);
+        });
+    
+        panel.add(speedSlider, BorderLayout.SOUTH);
     
         frame.add(panel);
         frame.revalidate();
         frame.repaint();
-
-        speedSlider= new JSlider(JSlider.HORIZONTAL,100,1200,600);
-        speedSlider.setMajorTickSpacing(100);
-        speedSlider.setPaintTicks(true);
-        speedSlider.setPaintLabels(true);
-
-        speedSlider.addChangeListener(e ->{
-            int delay= speedSlider.getValue();
-            timer.setDelay(delay);
-        });
-
-        panel.add(speedSlider, BorderLayout.SOUTH);
-
-        frame.add(panel);
-        frame.revalidate();
-        frame.repaint();
-
-        timer= new Timer(600, e->{
-            for (int i=0; i<numberOfPlanets; i++)
-            {
-                planetAngles[i]+=(2* Math.PI/360);
-                if (planetAngles[i]>=360){
-                    planetAngles[i]=0;
+    
+        // Start the animation timer
+        timer = new Timer(600, e -> {
+            for (int i = 0; i < numberOfPlanets; i++) {
+                planetAngles[i] += (2 * Math.PI / 360); // Adjust this value to change the speed of rotation
+                if (planetAngles[i] >= 360) {
+                    planetAngles[i] = 0;
                 }
             }
             drawPanel.repaint();
-        }    );
+        });
         timer.start();
     }
     
@@ -328,11 +325,11 @@ public class GUI_revamped {
             int centerX = width / 2;
             int centerY = height / 2;
     
-            
+            // Set a space-like background color
             g2d.setColor(Color.BLACK);
             g2d.fillRect(0, 0, width, height);
     
-           
+            // Draw stars
             g2d.setColor(Color.WHITE);
             for (int i = 0; i < 100; i++) {
                 int starX = (int) (Math.random() * width);
@@ -340,7 +337,7 @@ public class GUI_revamped {
                 g2d.fillRect(starX, starY, 2, 2);
             }
     
-            
+            // Calculate scaling factors for distances and radii
             double maxDistance = 0;
             for (double d : planetDistances) {
                 if (d > maxDistance) maxDistance = d;
@@ -352,19 +349,16 @@ public class GUI_revamped {
             g2d.setColor(Color.RED);
             g2d.fillOval(centerX - centralObjectRadius, centerY - centralObjectRadius, centralObjectRadius * 2, centralObjectRadius * 2);
     
-            
-            HashMap<Double, Integer> usedAngles = new HashMap<>();
-    
+            // Draw orbital rings and planets
             for (int i = 0; i < numberOfPlanets; i++) {
                 double distance = planetDistances[i] * scaleFactor;
-                double angle = usedAngles.getOrDefault(distance, 0);
-                usedAngles.put(distance, (int) angle + 30); // Increase angle to avoid overlap
     
-                
+                // Draw orbital ring
                 g2d.setColor(new Color(255, 255, 255, 50)); // semi-transparent white
                 g2d.drawOval(centerX - (int) distance, centerY - (int) distance, (int) distance * 2, (int) distance * 2);
     
-                double radianAngle = Math.toRadians(angle);
+                // Calculate planet position
+                double radianAngle = planetAngles[i];
                 int planetX = (int) (centerX + distance * Math.cos(radianAngle));
                 int planetY = (int) (centerY + distance * Math.sin(radianAngle));
     
@@ -373,11 +367,12 @@ public class GUI_revamped {
                 g2d.setColor(Color.BLUE);
                 g2d.fillOval(planetX - planetRadius, planetY - planetRadius, planetRadius * 2, planetRadius * 2);
     
-                
+                // Draw planet name
                 g2d.setColor(Color.WHITE);
                 g2d.drawString(planetNames[i], planetX + planetRadius + 5, planetY);
             }
         }
     }
     
-    }
+    
+}

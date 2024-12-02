@@ -24,8 +24,10 @@
     
 */
 import java.awt.*;
-import java.io.File;
+import java.awt.event.*;
 import javax.swing.*;
+import java.io.File;
+import java.util.HashMap;
 
 public class GUI_revamped {
     private JFrame frame;
@@ -36,10 +38,17 @@ public class GUI_revamped {
     private JTextField radiusCentralObjectField1, radiusCentralObjectField2;
     private JTextField numberOfPlanetsField;
     private int numberOfPlanets;
+    private JTextField[] planetNameFields;
+    private JTextField[] planetMassFields;
+    private JTextField[] planetRadiusFields;
+    private JTextField[] planetDistanceFields;
     private String[] planetNames;
     private double[] planetMasses;
     private double[] planetRadii;
     private double[] planetDistances;
+    private double[] planetAngles;
+    private Timer timer;
+    private JSlider speedSlider;
 
     public static void main(String[] args) {
         GUI_revamped gui = new GUI_revamped();
@@ -49,7 +58,7 @@ public class GUI_revamped {
     public void createFrame() {
         frame = new JFrame("GUI Revamped");
         frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-        frame.setSize(600, 300);
+        frame.setSize(1000,800);
         welcomeScreen();
         frame.setVisible(true);
     }
@@ -184,35 +193,50 @@ public class GUI_revamped {
             panel.removeAll();
             panel.setLayout(new GridLayout(0, 2));
 
-            planetNames = new String[numberOfPlanets];
-            planetMasses = new double[numberOfPlanets];
-            planetRadii = new double[numberOfPlanets];
-            planetDistances = new double[numberOfPlanets];
+            planetNameFields = new JTextField[numberOfPlanets];
+            planetMassFields = new JTextField[numberOfPlanets];
+            planetRadiusFields = new JTextField[numberOfPlanets];
+            planetDistanceFields = new JTextField[numberOfPlanets];
 
-            for (int i = 1; i <= numberOfPlanets; i++) {
-                panel.add(new JLabel("Name of Planet " + i + ":"));
-                JTextField planetNameField = new JTextField();
-                planetNames[i - 1] = planetNameField.getText();
-                panel.add(planetNameField);
+            for (int i = 0; i < numberOfPlanets; i++) {
+                panel.add(new JLabel("Name of Planet " + (i + 1) + ":"));
+                planetNameFields[i] = new JTextField();
+                panel.add(planetNameFields[i]);
 
-                panel.add(new JLabel("Mass of Planet " + i + ":"));
-                JTextField planetMassField = new JTextField();
-                planetMasses[i - 1] = Double.parseDouble(planetMassField.getText());
-                panel.add(planetMassField);
+                panel.add(new JLabel("Mass of Planet " + (i + 1) + ":"));
+                planetMassFields[i] = new JTextField();
+                panel.add(planetMassFields[i]);
 
-                panel.add(new JLabel("Radius of Planet " + i + ":"));
-                JTextField planetRadiusField = new JTextField();
-                planetRadii[i - 1] = Double.parseDouble(planetRadiusField.getText());
-                panel.add(planetRadiusField);
+                panel.add(new JLabel("Radius of Planet " + (i + 1) + ":"));
+                planetRadiusFields[i] = new JTextField();
+                panel.add(planetRadiusFields[i]);
 
-                panel.add(new JLabel("Distance from Planet " + i + " to central object:"));
-                JTextField distanceField = new JTextField();
-                planetDistances[i - 1] = Double.parseDouble(distanceField.getText());
-                panel.add(distanceField);
+                panel.add(new JLabel("Distance from Planet " + (i + 1) + " to central object:"));
+                planetDistanceFields[i] = new JTextField();
+                panel.add(planetDistanceFields[i]);
             }
 
             JButton submitButton = new JButton("Submit");
-            submitButton.addActionListener(e -> displayPlanets());
+            submitButton.addActionListener(e -> {
+                try {
+                    planetNames = new String[numberOfPlanets];
+                    planetMasses = new double[numberOfPlanets];
+                    planetRadii = new double[numberOfPlanets];
+                    planetDistances = new double[numberOfPlanets];
+                    planetAngles = new double[numberOfPlanets];
+
+                    for (int i = 0; i < numberOfPlanets; i++) {
+                        planetNames[i] = planetNameFields[i].getText();
+                        planetMasses[i] = Double.parseDouble(planetMassFields[i].getText());
+                        planetRadii[i] = Double.parseDouble(planetRadiusFields[i].getText());
+                        planetDistances[i] = Double.parseDouble(planetDistanceFields[i].getText());
+                        planetAngles[i] = Math.random() * 360; // Start each planet at a random angle
+                    }
+                    displayPlanets();
+                } catch (NumberFormatException ex) {
+                    JOptionPane.showMessageDialog(frame, "Please enter valid numerical values for planet data.");
+                }
+            });
 
             panel.add(submitButton);
 
@@ -247,30 +271,114 @@ public class GUI_revamped {
         frame.revalidate();
         frame.repaint();
     }
-
-    // New method to display planets
     private void displayPlanets() {
         frame.remove(panel);
         panel = new JPanel();
         panel.setLayout(new BorderLayout());
-
+    
         JLabel systemModelLabel = new JLabel("System Model: " + systemModelField.getText(), JLabel.CENTER);
         systemModelLabel.setFont(new Font("Arial", Font.BOLD, 16));
         panel.add(systemModelLabel, BorderLayout.NORTH);
+    
+        
+        JPanel drawPanel = new DrawPanel();
+        panel.add(drawPanel, BorderLayout.CENTER);
+    
+        frame.add(panel);
+        frame.revalidate();
+        frame.repaint();
 
-        JPanel planetsPanel = new JPanel(new GridLayout(0, 1));
+        speedSlider= new JSlider(JSlider.HORIZONTAL,100,1200,600);
+        speedSlider.setMajorTickSpacing(100);
+        speedSlider.setPaintTicks(true);
+        speedSlider.setPaintLabels(true);
 
-        for (int i = 0; i < numberOfPlanets; i++) {
-            String planetInfo = String.format("Planet %d: %s, Mass: %.2f, Radius: %.2f, Distance: %.2f",
-                    i + 1, planetNames[i], planetMasses[i], planetRadii[i], planetDistances[i]);
-            JLabel planetLabel = new JLabel(planetInfo);
-            planetsPanel.add(planetLabel);
-        }
+        speedSlider.addChangeListener(e ->{
+            int delay= speedSlider.getValue();
+            timer.setDelay(delay)
+        });
 
-        panel.add(planetsPanel, BorderLayout.CENTER);
+        panel.add(speedSlider, BorderLayout.SOUTH);
 
         frame.add(panel);
         frame.revalidate();
         frame.repaint();
+
+        timer= new Timer(600, e->{
+            for (int i=0; i<numberOfPlanets; i++)
+            {
+                planetAngles[i]+=(2* Math.PI/360);
+                if (planetAngels[i]>=360){
+                    planetAngels[i]=0;
+                }
+            }
+            drawPanel.repaint();
+        }    );
+        timer.start();
     }
-}
+    
+    class DrawPanel extends JPanel {
+        @Override
+        protected void paintComponent(Graphics g) {
+            super.paintComponent(g);
+            Graphics2D g2d = (Graphics2D) g;
+            g2d.setRenderingHint(RenderingHints.KEY_ANTIALIASING, RenderingHints.VALUE_ANTIALIAS_ON);
+    
+            int width = getWidth();
+            int height = getHeight();
+            int centerX = width / 2;
+            int centerY = height / 2;
+    
+            
+            g2d.setColor(Color.BLACK);
+            g2d.fillRect(0, 0, width, height);
+    
+           
+            g2d.setColor(Color.WHITE);
+            for (int i = 0; i < 100; i++) {
+                int starX = (int) (Math.random() * width);
+                int starY = (int) (Math.random() * height);
+                g2d.fillRect(starX, starY, 2, 2);
+            }
+    
+            
+            double maxDistance = 0;
+            for (double d : planetDistances) {
+                if (d > maxDistance) maxDistance = d;
+            }
+            double scaleFactor = Math.min(width, height) / (maxDistance * 2 + 100);
+    
+            // Draw central object (assuming the first central object's parameters)
+            int centralObjectRadius = (int) (Double.parseDouble(radiusCentralObjectField1.getText()) * scaleFactor);
+            g2d.setColor(Color.RED);
+            g2d.fillOval(centerX - centralObjectRadius, centerY - centralObjectRadius, centralObjectRadius * 2, centralObjectRadius * 2);
+    
+            
+            HashMap<Double, Integer> usedAngles = new HashMap<>();
+    
+            for (int i = 0; i < numberOfPlanets; i++) {
+                double distance = planetDistances[i] * scaleFactor;
+                double angle = usedAngles.getOrDefault(distance, 0);
+                usedAngles.put(distance, (int) angle + 30); // Increase angle to avoid overlap
+    
+                
+                g2d.setColor(new Color(255, 255, 255, 50)); // semi-transparent white
+                g2d.drawOval(centerX - (int) distance, centerY - (int) distance, (int) distance * 2, (int) distance * 2);
+    
+                double radianAngle = Math.toRadians(angle);
+                int planetX = (int) (centerX + distance * Math.cos(radianAngle));
+                int planetY = (int) (centerY + distance * Math.sin(radianAngle));
+    
+                int planetRadius = (int) (planetRadii[i] * scaleFactor / 5); // Scale planet radius for visibility
+    
+                g2d.setColor(Color.BLUE);
+                g2d.fillOval(planetX - planetRadius, planetY - planetRadius, planetRadius * 2, planetRadius * 2);
+    
+                
+                g2d.setColor(Color.WHITE);
+                g2d.drawString(planetNames[i], planetX + planetRadius + 5, planetY);
+            }
+        }
+    }
+    
+    }
